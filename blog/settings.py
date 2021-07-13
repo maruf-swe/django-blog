@@ -24,10 +24,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'tinymce',
     'posts',
     'd_marketing',
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -115,9 +117,9 @@ STATIC_URL = '/static/'  # for acess from browser
 MEDIA_URL = '/media/'  # for access from browser
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]  # base directory where static folder
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_in_production')  # for deploymentcollects static files from each of your
-                                                               #applications into a single location that can easily
-                                                                #be served in production.
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # where media file save
+# applications into a single location that can easily
+# be served in production.
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # where media file save
 
 # Tinymce
 
