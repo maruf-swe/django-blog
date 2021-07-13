@@ -47,7 +47,7 @@
                                             <a href="#">{{ cat }}</a>
                                         {% endfor %}
                                     </div>
-                                    <a href="post.html">
+                                    <a href="{{ obj.get_absolute_url }}">
                                         <h2 class="h4">{{ obj.title }}</h2></a>
                                 </header>
                                 <p>{{ obj.overview }}</p>
@@ -93,7 +93,7 @@
             <div class="row">
                 {% for lat in latest_post %}
                     <div class="post col-md-4">
-                        <div class="post-thumbnail"><a href="post.html"><img src="{{ lat.thumbnail.url }}" alt="..."
+                        <div class="post-thumbnail"><a href="{{ lat.get_absolute_url }}"><img src="{{ lat.thumbnail.url }}" alt="..."
                                                                              class="img-fluid"></a></div>
                         <div class="post-details">
                             <div class="post-meta d-flex justify-content-between">
@@ -102,7 +102,7 @@
                                     <div class="category"><a href="#">{{ cat }}</a></div>
                                 {% endfor %}
                             </div>
-                            <a href="post.html">
+                            <a href="{{ lat.get_absolute_url }}">
                                 <h3 class="h4">{{ lat.title }}</h3></a>
                             <p class="text-muted">{{ lat.overview }} </p>
                         </div>

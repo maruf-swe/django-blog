@@ -43,8 +43,8 @@ def index(request):
 
 def blog(request):
     category_count = get_category_count()
-    most_recent = Post.objects.order_by('-timestamp')[:3]
-    post_list = Post.objects.all()
+    most_recent = Post.objects.order_by('-timestamp')[:4]
+    post_list = Post.objects.order_by('timestamp')
     paginator = Paginator(post_list, 4)
     page_request = request.GET.get('page')
     try:
@@ -62,9 +62,13 @@ def blog(request):
     return render(request, 'blog.html', context)
 
 
-def post(request, id):
+def post_detail(request, id):
+    category_count = get_category_count()
+    most_recent = Post.objects.order_by('-timestamp')[:3]
     post = get_object_or_404(Post, id=id)
     context = {
-        'post': post
+        'post': post,
+        'most_recent': most_recent,
+        'category_count': category_count,
     }
     return render(request, 'post.html', context)
