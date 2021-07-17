@@ -7,10 +7,11 @@ from d_marketing.models import Subscribing
 
 
 def get_author(user):
-    qs = Author.objects.filter(user = user)
+    qs = Author.objects.filter(user=user)
     if qs.exists():
         return qs[0]
     return None
+
 
 def get_category_count():
     queryset = Post.objects.values('categories__title').annotate(Count('categories__title'))
@@ -92,6 +93,7 @@ def post_detail(request, id):
 
 
 def post_create(request):
+    title = 'Create'
     form = PostForm(request.POST or None, request.FILES or None)
     author = get_author(request.user)
     if form.is_valid():
@@ -100,13 +102,29 @@ def post_create(request):
         return redirect(reverse('post-detail', kwargs={'id': form.instance.id}))
 
     context = {
+        'title': title,
         'form': form
     }
     return render(request, 'post_create.html', context)
 
 
-def post_update(request):
-    pass
+def post_update(request, id):
+    title = 'Update'
+    post = get_object_or_404(Post, id=id)
+    form = PostForm(request.POST or None,
+                    request.FILES or None,
+                    instance=post)
+    author = get_author(request.user)
+    if form.is_valid():
+        form.instance.author = author
+        form.save()
+        return redirect(reverse('post-detail', kwargs={'id': form.instance.id}))
+
+    context = {
+        'title':title,
+        'form': form
+    }
+    return render(request, 'post_create.html', context)
 
 
 def post_delete(request):
