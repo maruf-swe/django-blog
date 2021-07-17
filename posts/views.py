@@ -121,11 +121,13 @@ def post_update(request, id):
         return redirect(reverse('post-detail', kwargs={'id': form.instance.id}))
 
     context = {
-        'title':title,
+        'title': title,
         'form': form
     }
     return render(request, 'post_create.html', context)
 
 
-def post_delete(request):
-    pass
+def post_delete(request, id):
+    post = get_object_or_404(Post, id=id)
+    post.delete()
+    return redirect(reverse('post-list'))
