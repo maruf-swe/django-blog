@@ -17,10 +17,16 @@
                                         <a href="#">{{ cat }}</a>
                                     {% endfor %}
                                 </div>
-                                <div>
-                                    <a href="{% url 'post-update' id=post.id %}">Update</a>
-                                    <a href="{% url 'post-delete' id=post.id %}">Delete</a>
-                                </div>
+                                    {% if request.user.is_authenticated %}
+                                    <div>
+                                        <a class="btn btn-secondary btn-sm mt-1 mb-1"
+                                           href="{% url 'post-update' id=post.id %}">Update</a>
+                                        <a class="btn btn-danger btn-sm mt-1 mb-1"
+                                           href="{% url 'post-delete' id=post.id %}">Delete</a>
+                                    </div>
+                                   {% endif %}
+
+
                             </div>
                             <h1>{{ post.title }}<a href="#"><i
                                     class="fa fa-bookmark-o"></i></a></h1>
