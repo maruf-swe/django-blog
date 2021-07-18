@@ -1,5 +1,5 @@
-import os
 from pathlib import Path
+import os
 import django_heroku
 import dj_database_url
 from decouple import config
@@ -120,7 +120,7 @@ STATIC_URL = '/static/'  # for acess from browser
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_in_production')  # for deploymentcollects static files from each of your
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'  # for access from browser
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]  # base directory where static folder
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]  # base directory where static folder
 
 # applications into a single location that can easily
 # be served in production.
