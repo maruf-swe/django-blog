@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
-
+import django_heroku
+import dj_database_url
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,6 +41,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'blog.urls'
@@ -114,9 +117,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'  # for acess from browser
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_in_production')  # for deploymentcollects static files from each of your
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'  # for access from browser
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]  # base directory where static folder
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_in_production')  # for deploymentcollects static files from each of your
+
 # applications into a single location that can easily
 # be served in production.
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # where media file save
@@ -153,3 +158,5 @@ TINYMCE_DEFAULT_CONFIG = {
     'menubar': True,
     'statusbar': True,
 }
+
+django_heroku.settings(locals())
