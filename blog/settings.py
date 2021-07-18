@@ -1,6 +1,5 @@
-import os
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -114,9 +113,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'  # for acess from browser
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_in_production')  # for deploymentcollects static files from each of your
 MEDIA_URL = '/media/'  # for access from browser
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]  # base directory where static folder
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_in_production')  # for deploymentcollects static files from each of your
+
 # applications into a single location that can easily
 # be served in production.
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # where media file save
