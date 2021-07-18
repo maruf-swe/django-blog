@@ -121,6 +121,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_in_production')  # for deploymentco
 # be served in production.
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # where media file save
 
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
+
+
 # Tinymce
 
 TINYMCE_DEFAULT_CONFIG = {

@@ -51,7 +51,6 @@ class PostViewCount(models.Model):
 
 
 class Post(models.Model):
-    objects = None
     title = models.CharField(max_length=100)
     overview = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
