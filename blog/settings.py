@@ -1,4 +1,3 @@
-
 import os
 from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,6 +38,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'blog.urls'
@@ -115,8 +115,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = '/static/'  # for acess from browser
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_in_production')  # for deploymentcollects static files from each of your
-MEDIA_URL = '/media/'  # for access from browser
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]  # base directory where static folder
+MEDIA_URL = '/media/'  # for access from browser
+MEDIA_URL = '/media/'  # for access from browser
+
 
 # applications into a single location that can easily
 # be served in production.
