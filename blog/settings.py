@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'tinymce',
     'posts',
     'd_marketing',
+    'user',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
